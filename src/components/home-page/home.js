@@ -44,6 +44,8 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	_.forEach(toKeep, function(u) {
     		var match = _.find(newData, { 'name': u.Name })
     		u.ClosestRegion = new Region(match.UUID, match.closestRegion, match.signalStrength)
+    		console.log(u.EnteredParkAt)
+    		u.EnteredAreaDateTime = moment(u.EnteredParkAt).startOf('minute').fromNow()
     	})
 
     	self.inhabitants(toKeep)
@@ -55,7 +57,8 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	})
     	_.forEach(toAdd, function(a) {
     		var curr = self.inhabitants()
-    		curr.unshift(new Inhabitant(a.name, a.refreshDateTime, a.regions, 
+    		console.log(a)
+    		curr.unshift(new Inhabitant(a.name, a.closestRegion.TakenAt, a.regions, 
     			new Region(a.UUID, a.closestRegion, a.SignalStrength),
     			a.ConnectionStatus === "Connected"))
     		self.inhabitants(curr)
@@ -84,9 +87,10 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     		var json = JSON.parse(data)
 
     		var mapped = _.map(json, function(u) {
+    			console.log(u)
 		    	return {
 					name: u.UserName,
-					refreshDateTime: u.ClosestRegion.TakenAt,
+					refreshDateTime: u.ClosestRegion.EnteredAt,
 					regions: _.map(u.VisibleRegions, function(r) {
 						return r.Id
 					}),
