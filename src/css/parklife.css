@@ -53,26 +53,34 @@ section#floorplan {
     top: 289px;
     left: 98px;
     background: rgba(0, 100, 140, 0); }
+  section#floorplan #tea-point {
+    width: 118px;
+    height: 138px;
+    top: 146px;
+    left: 572px;
+    background: rgba(255, 100, 140, 0); }
 
-article {
-  margin-bottom: 2px;
-  border-bottom: 1px dashed silver;
-  padding: 20px 0; }
-  article:first-child {
-    border-top: 1px dashed silver; }
-  article div {
-    border-radius: 100px;
-    float: left;
-    margin-right: 1em; }
-  article > div {
-    background: #C6CDE0;
-    padding: 2px;
-    width: 68px;
-    height: 68px; }
-    article > div div {
-      background: #C6CDE0 url("../images/bobafett.jpg");
-      border: white 3px solid;
-      width: 64px;
-      height: 64px; }
+section#inhabitants {
+  margin-left: 66%; }
+  section#inhabitants article {
+    margin-bottom: 2px;
+    border-bottom: 1px dashed silver;
+    padding: 20px 0; }
+    section#inhabitants article:first-child {
+      border-top: 1px dashed silver; }
+    section#inhabitants article div {
+      border-radius: 100px;
+      float: left;
+      margin-right: 1em; }
+    section#inhabitants article > div {
+      background: #C6CDE0;
+      padding: 2px;
+      width: 68px;
+      height: 68px; }
+      section#inhabitants article > div div {
+        background: #C6CDE0 url("../images/bobafett.jpg");
+        border: white 3px solid;
+        width: 64px;
+        height: 64px; }
 
 /*# sourceMappingURL=parklife.css.map */

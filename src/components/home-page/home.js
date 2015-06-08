@@ -8,7 +8,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 		self.SignalStrength = signalStrength
 	}
 
-	var Inhabitant = function(name, refreshDateTime, regions, closestRegion) {
+	var Inhabitant = function(name, refreshDateTime, regions, closestRegion, isConnected) {
 		var self = this
 		self.Name = name
 		self.EnteredParkAt = moment(refreshDateTime)
@@ -16,14 +16,15 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 		self.RefreshDateTime = moment(refreshDateTime).startOf('minute').fromNow()
 		self.Regions = regions // string array
 		self.ClosestRegion = closestRegion
+		self.IsConnected = isConnected
 	}
 
   function HomeViewModel(route) {
   	var self = this
   	self.inhabitants = ko.observableArray()
 
-  	self.showElement = function(elem) { console.log("show " + elem); if (elem.nodeType === 1) $(elem).hide().slideDown("slow") }
-    self.hideElement = function(elem) { console.log("hide " + elem); if (elem.nodeType === 1) $(elem).slideUp("slow", function() { $(elem).remove(); }) }
+  	self.showElement = function(elem) { if (elem.nodeType === 1) $(elem).hide().slideDown("slow") }
+    self.hideElement = function(elem) { if (elem.nodeType === 1) $(elem).slideUp("slow", function() { $(elem).remove(); }) }
 
     self.remove = function(row, event) {
     	var inhabitants = _.filter(self.inhabitants(), function(x) {
@@ -37,7 +38,12 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	// remove people no longer in feed
     	var toKeep = _.filter(self.inhabitants(), function(o) {
     		var match = _.find(newData, { 'name': o.Name })
-    		return match !== undefined
+    		return match !== undefined && match.ConnectionStatus === "Connected"
+    	})
+
+    	_.forEach(toKeep, function(u) {
+    		var match = _.find(newData, { 'name': u.Name })
+    		u.ClosestRegion = new Region(match.UUID, match.closestRegion, match.signalStrength)
     	})
 
     	self.inhabitants(toKeep)
@@ -45,12 +51,13 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	// add
     	var toAdd = _.filter(newData, function(o) {
     		var match = _.find(self.inhabitants(), { 'Name': o.name })
-    		return match === undefined
+    		return match === undefined && o.ConnectionStatus === "Connected"
     	})
     	_.forEach(toAdd, function(a) {
     		var curr = self.inhabitants()
     		curr.unshift(new Inhabitant(a.name, a.refreshDateTime, a.regions, 
-    			new Region(a.UUID, a.closestRegion, a.SignalStrength)))
+    			new Region(a.UUID, a.closestRegion, a.SignalStrength),
+    			a.ConnectionStatus === "Connected"))
     		self.inhabitants(curr)
     	})
     	var sorted = _.sortBy(self.inhabitants(), function(i) {
@@ -73,23 +80,22 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     }
 
     self.pollData = function() {
-    	$.get( "http://parklifeservices.apphb.com/api/dummygetall", function( data ) {
+    	$.get( "http://parklifeservices.apphb.com/api/getall", function( data ) {
     		var json = JSON.parse(data)
 
     		var mapped = _.map(json, function(u) {
 		    	return {
 					name: u.UserName,
-					refreshDateTime: u.ClosestBeacon.LatestReading.TakenAt,
+					refreshDateTime: u.ClosestRegion.TakenAt,
 					regions: _.map(u.VisibleRegions, function(r) {
 						return r.Id
 					}),
 					closestRegion: u.ClosestRegion.Id,
 					regionSignalStrength: 1.5,
-					UUID: 1234567892
+					UUID: 1234567892,
+					ConnectionStatus: u.Status
     			}
     		})
-
-    		console.log(mapped)
 
     		self.refresh(mapped)
 		});
