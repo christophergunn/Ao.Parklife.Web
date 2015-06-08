@@ -25,6 +25,8 @@ article {
   padding-bottom: 20px; }
   article:first-child {
     border-top: 1px dashed silver; }
+    article:first-child > div {
+      margin-top: 20px; }
   article div {
     border-radius: 100px;
     float: left;

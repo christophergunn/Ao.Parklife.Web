@@ -1,12 +1,11 @@
 <h2>Who's in the Park?</h2>
-<button data-bind="click:add">Add</button>
+<button data-bind="click:refresh">Refresh</button>
 <section data-bind="template: { foreach:inhabitants,
 								beforeRemove:hideElement,
 								afterAdd:showElement }">
 	<article>
 		<div><div /></div>
 		<h3 data-bind="text: Name"></h3>
-		<span data-bind="text: InDateTime"></span>
-		<button data-bind="click:$parent.remove">Remove</button>
+		<span data-bind="text: RefreshDateTime"></span>
 	</article>
 </section>
