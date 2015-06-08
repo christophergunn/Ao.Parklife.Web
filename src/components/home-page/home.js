@@ -50,6 +50,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 	var Inhabitant = function(name, refreshDateTime, regions, closestRegion) {
 		var self = this
 		self.Name = name
+		self.EnteredParkAt = moment(refreshDateTime)
 		self.EnteredAreaDateTime = moment(refreshDateTime).startOf('minute').fromNow()
 		self.RefreshDateTime = moment(refreshDateTime).startOf('minute').fromNow()
 		self.Regions = regions // string array
@@ -63,23 +64,13 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
   			new Region(user.UUID, user.closestRegion, user.regionSignalStrength))
   	}))
 
-  	self.showElement = function(elem) { console.log("show " + elem); if (elem.nodeType === 1) $(elem).hide().fadeIn("fast") }
-    self.hideElement = function(elem) { console.log("hide " + elem); if (elem.nodeType === 1) $(elem).fadeOut("fast", function() { $(elem).remove(); }) }
-
-    self.add = function() {
-    	var inhabitants = self.inhabitants()
-    	inhabitants.push(new Inhabitant("Mo Mulla", moment()))
-    	self.inhabitants(inhabitants)
-    }
+  	self.showElement = function(elem) { console.log("show " + elem); if (elem.nodeType === 1) $(elem).hide().slideDown("slow") }
+    self.hideElement = function(elem) { console.log("hide " + elem); if (elem.nodeType === 1) $(elem).slideUp("slow", function() { $(elem).remove(); }) }
 
     self.remove = function(row, event) {
     	var inhabitants = _.filter(self.inhabitants(), function(x) {
-    		console.log(x)
-    		console.log(row)
-    		console.log(x.Name !== row.Name)
     		return x.Name !== row.Name
     	})
-    	console.log(inhabitants)
     	self.inhabitants(inhabitants) 
     }
 
@@ -90,7 +81,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     		var match = _.find(newData, { 'name': o.Name })
     		return match !== undefined
     	})
-    	
+
     	self.inhabitants(toKeep)
 
 
@@ -101,10 +92,14 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	})
     	_.forEach(toAdd, function(a) {
     		var curr = self.inhabitants()
-    		curr.push(new Inhabitant(a.name, a.refreshDateTime, a.regions, 
+    		curr.unshift(new Inhabitant(a.name, a.refreshDateTime, a.regions, 
     			new Region(a.UUID, a.Name, a.SignalStrength)))
     		self.inhabitants(curr)
     	})
+    	var sorted = _.sortBy(self.inhabitants(), function(i) {
+    		return -(i.EnteredParkAt)
+    	})
+    	self.inhabitants(sorted)
     }
   }
 

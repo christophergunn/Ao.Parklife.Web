@@ -1,5 +1,12 @@
 <h2>Who's in the Park?</h2>
 <button data-bind="click:refresh">Refresh</button>
+<section id="floorplan">
+	<div id="starbucks" />
+	<div id="food-counter" />
+	<div id="tea-point" />
+	<div id="games-area" />
+	<div id="telephone-booth" />
+</section>
 <section data-bind="template: { foreach:inhabitants,
 								beforeRemove:hideElement,
 								afterAdd:showElement }">

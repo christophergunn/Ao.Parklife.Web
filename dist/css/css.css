@@ -26,14 +26,46 @@ h1, h2, h3 {
 h2 {
   margin-bottom: 20px; }
 
+section#floorplan {
+  background: url("../images/floorplan.jpg") no-repeat center;
+  height: 500px;
+  width: 66%;
+  float: left;
+  margin-right: 1em;
+  position: relative; }
+  section#floorplan > div {
+    position: absolute; }
+  section#floorplan #starbucks {
+    width: 148px;
+    height: 111px;
+    top: 49px;
+    left: 108px;
+    background: rgba(255, 120, 0, 0.5); }
+  section#floorplan #food-counter {
+    width: 157px;
+    height: 111px;
+    top: 51px;
+    left: 418px;
+    background: rgba(120, 0, 40, 0.2); }
+  section#floorplan #games-area {
+    width: 100px;
+    height: 150px;
+    top: 286px;
+    left: 363px;
+    background: rgba(0, 200, 40, 0.2); }
+  section#floorplan #telephone-booth {
+    width: 138px;
+    height: 160px;
+    top: 289px;
+    left: 98px;
+    background: rgba(0, 100, 140, 0.2); }
+
 article {
   margin-bottom: 2px;
   border-bottom: 1px dashed silver;
-  padding-bottom: 20px; }
+  padding: 20px 0; }
   article:first-child {
     border-top: 1px dashed silver; }
-    article:first-child > div {
-      margin-top: 20px; }
   article div {
     border-radius: 100px;
     float: left;
