@@ -44,7 +44,7 @@ gulp.task('css', function () {
         combinedCss = es.concat(bowerCss, appCss).pipe(concat('css.css')),
         fontFiles = gulp.src('./src/bower_modules/components-bootstrap/fonts/*', { base: './src/bower_modules/components-bootstrap/' });
 
-    return es.concat(combinedCss, fontFiles,images,newFonts)
+    return es.concat(combinedCss, fontFiles)
         .pipe(gulp.dest('./dist/'));
 });
 
