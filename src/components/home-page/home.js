@@ -1,8 +1,8 @@
 define(["knockout", "jquery", "moment", "text!./home.html"], function(ko, $, moment, homeTemplate) {
 
   function HomeViewModel(route) {
-  	var inhabitants = ko.observablearray([
-  		{ "Name": "Vincent Lee", "Time":  }
+  	this.inhabitants = ko.observableArray([
+  		{ "Name": "Vincent Lee", "Time": moment().startOf('minute').fromNow() }
   	]);
   }
 
