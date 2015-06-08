@@ -69,7 +69,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     }
 
     self.pollData = function() {
-    	$.get( "http://localhost:51846/api/DummyGetAll", function( data ) {
+    	$.get( "http://parklifeservices.apphb.com/api/getall", function( data ) {
     		var json = JSON.parse(data)
 
     		var mapped = _.map(json, function(u) {

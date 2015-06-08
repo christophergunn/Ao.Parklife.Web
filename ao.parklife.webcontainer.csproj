@@ -118,6 +118,9 @@
     <Content Include="dist\images\bobafett.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="dist\images\floorplan.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="dist\images\green_logo.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
