@@ -6,7 +6,7 @@ src:url('../fonts/AoOz-Bold.eot?') format('eot'),
 
 $aoGreen: #7FBA24;
 
-h1,h2,h3 { font-family: 'ozBold' }
+h1,h2,h3 { font-family: 'ozBold' !important }
 
 .navbar {
 	background: $aoGreen;

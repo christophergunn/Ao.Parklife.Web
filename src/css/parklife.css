@@ -4,7 +4,7 @@
   font-weight: normal;
   font-style: normal; }
 h1, h2, h3 {
-  font-family: "ozBold"; }
+  font-family: "ozBold" !important; }
 
 .navbar {
   background: #7FBA24;
