@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,UAIkF;EAJvE,WAAW,EAAC,QAAQ;EAC/B,GAAG,EAAC,0LAA4C;EAGH,WAAW,EAAC,MAAM;EAAC,UAAU,EAAC,MAAM;AAEjF,UAAS;EAAE,WAAW,EAAE,QAAQ;;AAEhC,OAAQ;EACP,UAAU,EAAE,OAAO;EACnB,KAAK,EAAE,KAAK;EACZ,WAAI;IAAE,KAAK,EAAE,IAAI;IAAE,YAAY,EAAE,GAAG;;AAErC,KAAM;EAAE,UAAU,EAAE,IAAI",
+"sources": ["parklife.scss"],
 "names": [],
 "file": "parklife.css"
 }

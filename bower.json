@@ -10,7 +10,8 @@
     "requirejs-text": "~2.0.10",
     "knockout": "~3.3.0-alpha",
     "knockout-projections": "~1.1.0",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "lodash": "~3.9.3"
   },
   "resolutions": {
     "knockout": "~3.3.0-alpha"

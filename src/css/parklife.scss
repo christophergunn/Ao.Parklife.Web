@@ -1,0 +1,14 @@
+@font-face{font-family:'ozBold'; 
+src:url('../fonts/AoOz-Bold.eot?') format('eot'),
+	url('../fonts/AoOz-Bold.woff') format('woff'),
+	url('../fonts/AoOz-Bold.ttf') format('truetype'),
+	url('../fonts/AoOz-Bold.svg') format('svg');font-weight:normal;font-style:normal}
+
+h1,h2,h3 { font-family: 'ozBold' }
+
+.navbar {
+	background: #7FBA24;
+	color: white;
+	img { float: left; margin-right: 1em; }
+}
+#page { margin-top: 80px; }
