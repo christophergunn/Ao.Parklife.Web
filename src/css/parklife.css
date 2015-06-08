@@ -33,25 +33,25 @@ section#floorplan {
     height: 111px;
     top: 49px;
     left: 108px;
-    background: rgba(255, 120, 0, 0.5); }
+    background: rgba(255, 120, 0, 0); }
   section#floorplan #food-counter {
     width: 157px;
     height: 111px;
     top: 51px;
     left: 418px;
-    background: rgba(120, 0, 40, 0.2); }
+    background: rgba(120, 0, 40, 0); }
   section#floorplan #games-area {
     width: 100px;
     height: 150px;
     top: 286px;
     left: 363px;
-    background: rgba(0, 200, 40, 0.2); }
+    background: rgba(0, 200, 40, 0); }
   section#floorplan #telephone-booth {
     width: 138px;
     height: 160px;
     top: 289px;
     left: 98px;
-    background: rgba(0, 100, 140, 0.2); }
+    background: rgba(0, 100, 140, 0); }
 
 article {
   margin-bottom: 2px;

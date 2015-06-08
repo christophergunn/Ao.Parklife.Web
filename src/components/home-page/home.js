@@ -84,7 +84,6 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 
     	self.inhabitants(toKeep)
 
-
     	// add
     	var toAdd = _.filter(newData, function(o) {
     		var match = _.find(self.inhabitants(), { 'Name': o.name })
@@ -93,35 +92,48 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	_.forEach(toAdd, function(a) {
     		var curr = self.inhabitants()
     		curr.unshift(new Inhabitant(a.name, a.refreshDateTime, a.regions, 
-    			new Region(a.UUID, a.Name, a.SignalStrength)))
+    			new Region(a.UUID, a.closestRegion, a.SignalStrength)))
     		self.inhabitants(curr)
     	})
     	var sorted = _.sortBy(self.inhabitants(), function(i) {
     		return -(i.EnteredParkAt)
     	})
     	self.inhabitants(sorted)
+
+    	self.updateTotalInhabitants('FoodCounter', 'food-counter', '120, 0, 40')
+    }
+
+    self.updateTotalInhabitants = function(apiID, htmlID, rgbValue) {
+    	var totalInFoodCounter = _.filter(self.inhabitants(), function(i) {
+    		return i.ClosestRegion.Name === apiID
+    	}).length
+    	$("div#" + htmlID).css('background-color', 'rgba(' + rgbValue + ', ' + totalInFoodCounter / 10 + ')')    	
     }
 
     self.pollData = function() {
     	$.get( "http://localhost:51846/api/DummyGetAll", function( data ) {
     		var json = JSON.parse(data)
-    		console.log(json)
 
     		var mapped = _.map(json, function(u) {
 		    	return {
 					name: u.UserName,
 					refreshDateTime: u.ClosestBeacon.LatestReading.TakenAt,
-					regions: ["Food Counter"],
+					regions: _.map(u.VisibleRegions, function(r) {
+						return r.Id
+					}),
 					closestRegion: u.ClosestRegion.Id,
 					regionSignalStrength: 1.5,
 					UUID: 1234567892
     			}
     		})
 
+    		console.log(mapped)
+
     		self.refresh(mapped)
 		});
     }
 
+    self.pollData
     var interval = setInterval(self.pollData, 2000)
   }
 
