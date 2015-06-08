@@ -45,7 +45,7 @@ gulp.task('css', function () {
         fontFiles = gulp.src('./src/bower_modules/components-bootstrap/fonts/*', { base: './src/bower_modules/components-bootstrap/' });
 
     return es.concat(combinedCss, fontFiles)
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./dist/css/'));
 });
 
 // Copies index.html, replacing <script> and <link> tags to reference production URLs
