@@ -1,45 +1,6 @@
 define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 	   function(ko, $, moment, _, homeTemplate) {
 
-	var oldUsers = [
-		{
-			name: "Vince Lee",
-			refreshDateTime: "2015-06-08 12:35",
-			regions: ["Starbucks", "Food Counter"],
-			closestRegion: "Starbucks",
-			regionSignalStrength: 1.5,
-			UUID: 123456789
-		},
-		{
-			name: "Chris Gunn",
-			refreshDateTime: "2015-06-08 12:35",
-			regions: ["Tea Point", "Games Area"],
-			closestRegion: "Games Area",
-			regionSignalStrength: 2.4,
-			UUID: 1234567891
-		}
-	]
-
-
-	var newUsers = [
-		{
-			name: "Vince Lee",
-			refreshDateTime: moment(),
-			regions: ["Food Counter"],
-			closestRegion: "Food Counter",
-			regionSignalStrength: 1.5,
-			UUID: 1234567892
-		},
-		{
-			name: "Raj Eridisinghe",
-			refreshDateTime: moment(),
-			regions: ["Telephone Booth"],
-			closestRegion: "Telephone Booth",
-			regionSignalStrength: 1.8,
-			UUID: 1234567893
-		}
-	]
-
 	var Region = function(uuid, name, signalStrength) {
 		var self = this
 		self.UUID = uuid
@@ -59,10 +20,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
 
   function HomeViewModel(route) {
   	var self = this
-  	self.inhabitants = ko.observableArray(_.map(oldUsers, function(user) {
-  		return new Inhabitant(user.name, user.refreshDateTime, user.regions, 
-  			new Region(user.UUID, user.closestRegion, user.regionSignalStrength))
-  	}))
+  	self.inhabitants = ko.observableArray()
 
   	self.showElement = function(elem) { console.log("show " + elem); if (elem.nodeType === 1) $(elem).hide().slideDown("slow") }
     self.hideElement = function(elem) { console.log("hide " + elem); if (elem.nodeType === 1) $(elem).slideUp("slow", function() { $(elem).remove(); }) }
