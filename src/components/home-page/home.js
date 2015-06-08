@@ -58,7 +58,11 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	})
     	self.inhabitants(sorted)
 
-    	self.updateTotalInhabitants('FoodCounter', 'food-counter', '120, 0, 40')
+    	self.updateTotalInhabitants('FoodCounter', 		'food-counter', 	'120, 0, 40')
+    	self.updateTotalInhabitants('Starbucks', 		'starbucks', 		'255, 120, 0')
+    	self.updateTotalInhabitants('TeaPoint', 		'tea-point', 		'120, 0, 40')
+    	self.updateTotalInhabitants('GamesArea', 		'games-area', 		'0, 200, 40')
+    	self.updateTotalInhabitants('TelephoneBooth', 	'telephone-booth', 	'0, 100, 140')
     }
 
     self.updateTotalInhabitants = function(apiID, htmlID, rgbValue) {
@@ -69,7 +73,7 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     }
 
     self.pollData = function() {
-    	$.get( "http://parklifeservices.apphb.com/api/getall", function( data ) {
+    	$.get( "http://parklifeservices.apphb.com/api/dummygetall", function( data ) {
     		var json = JSON.parse(data)
 
     		var mapped = _.map(json, function(u) {

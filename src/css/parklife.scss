@@ -26,6 +26,7 @@ section#floorplan {
 	position: relative;
 	& > div { 
 		position: absolute;
+		transition: background-color 0.5s ease;
 	}
 	#starbucks { 
 	    width: 148px;

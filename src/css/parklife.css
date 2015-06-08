@@ -27,7 +27,8 @@ section#floorplan {
   margin-right: 1em;
   position: relative; }
   section#floorplan > div {
-    position: absolute; }
+    position: absolute;
+    transition: background-color 0.5s ease; }
   section#floorplan #starbucks {
     width: 148px;
     height: 111px;
