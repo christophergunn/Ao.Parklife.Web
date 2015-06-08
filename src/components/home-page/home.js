@@ -101,6 +101,28 @@ define(["knockout", "jquery", "moment", "lodash", "text!./home.html"],
     	})
     	self.inhabitants(sorted)
     }
+
+    self.pollData = function() {
+    	$.get( "http://localhost:51846/api/DummyGetAll", function( data ) {
+    		var json = JSON.parse(data)
+    		console.log(json)
+
+    		var mapped = _.map(json, function(u) {
+		    	return {
+					name: u.UserName,
+					refreshDateTime: u.ClosestBeacon.LatestReading.TakenAt,
+					regions: ["Food Counter"],
+					closestRegion: u.ClosestRegion.Id,
+					regionSignalStrength: 1.5,
+					UUID: 1234567892
+    			}
+    		})
+
+    		self.refresh(mapped)
+		});
+    }
+
+    var interval = setInterval(self.pollData, 2000)
   }
 
 
