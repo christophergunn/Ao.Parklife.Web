@@ -4,11 +4,39 @@ src:url('../fonts/AoOz-Bold.eot?') format('eot'),
 	url('../fonts/AoOz-Bold.ttf') format('truetype'),
 	url('../fonts/AoOz-Bold.svg') format('svg');font-weight:normal;font-style:normal}
 
+$aoGreen: #7FBA24;
+
 h1,h2,h3 { font-family: 'ozBold' }
 
 .navbar {
-	background: #7FBA24;
+	background: $aoGreen;
 	color: white;
 	img { float: left; margin-right: 1em; }
 }
 #page { margin-top: 80px; }
+
+h2 { margin-bottom: 20px;}
+article {
+	margin-bottom: 2px;
+	border-bottom: 1px dashed silver;
+	padding-bottom: 20px;
+	&:first-child { 
+		border-top: 1px dashed silver;
+	}
+	div {
+		border-radius: 100px;
+		float: left; margin-right: 1em;
+	}
+	& > div {
+		background:#C6CDE0;
+		padding: 2px;
+		width: 68px;
+		height: 68px;
+		div {
+			background: #C6CDE0 url('../images/bobafett.jpg');
+			border: white 3px solid;
+		width: 64px;
+		height: 64px;
+		}
+	}
+}

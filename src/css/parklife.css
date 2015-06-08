@@ -16,4 +16,28 @@ h1, h2, h3 {
 #page {
   margin-top: 80px; }
 
+h2 {
+  margin-bottom: 20px; }
+
+article {
+  margin-bottom: 2px;
+  border-bottom: 1px dashed silver;
+  padding-bottom: 20px; }
+  article:first-child {
+    border-top: 1px dashed silver; }
+  article div {
+    border-radius: 100px;
+    float: left;
+    margin-right: 1em; }
+  article > div {
+    background: #C6CDE0;
+    padding: 2px;
+    width: 68px;
+    height: 68px; }
+    article > div div {
+      background: #C6CDE0 url("../images/bobafett.jpg");
+      border: white 3px solid;
+      width: 64px;
+      height: 64px; }
+
 /*# sourceMappingURL=parklife.css.map */
